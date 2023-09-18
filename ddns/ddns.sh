@@ -1,5 +1,5 @@
 #!/bin/bash
-debug="1"
+debug="0"
 #################  脚本配置  ######################
 config_path="./config.json"
 #jq路径
@@ -20,8 +20,6 @@ record_id=""
 record_line_id=""
 #记录数组
 record_num=""
-#获取当前时间
-get_time=$(date '+%Y-%m-%d %H:%M:%S')
 
 login_id=""
 login_token=""
@@ -70,6 +68,8 @@ check_jagou() {
 }
 #日志函数
 log() {
+	#获取当前时间
+	get_time=$(date '+%Y-%m-%d %H:%M:%S')
 	if [ "$1" ]; then
 		if [ $debug == "1" ]; then
 			echo -e "[${get_time}] -- $1"
@@ -104,7 +104,7 @@ get_openwrt_local_ipv4() {
 	# ifc=$(ifconfig | grep "inet addr:192.168.1")
 	# ipt=$(echo $ifc | awk -F: '{print $2}')
 	# new_ip=$(echo $ipt | awk '{print $1}')
-	new_ip="192.168.1.3"
+	new_ip="192.168.1.2"
 }
 #检查ip是否改变
 check_ip_change() {
