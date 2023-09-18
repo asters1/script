@@ -37,22 +37,32 @@ jx_config() {
 	# 判断为空
 	if [ ! $login_id ]; then
 		log "没有获取到用户ID，请检查配置..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 	if [ ! $login_token ]; then
 		log "没有获取到用户token，请检查配置..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 	if [ ! $domain_id ]; then
 		log "没有获取到域名ID，请检查配置..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 	if [ ! $sub_domain ]; then
 		log "没有获取到主机记录，请检查配置..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 	if [ ! $record_type ]; then
 		log "没有获取到记录类型，请检查配置..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 
@@ -82,6 +92,8 @@ log() {
 check_jq() {
 	if [ ! -f $jq_path ]; then
 		echo "jq文件不存在，请检查!!!"
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 }
@@ -96,6 +108,8 @@ get_ip() {
 		log 本机ip为${new_ip}
 	else
 		log "ip类型有错误请检查，填A或者AAAA,A代表ipv4,AAAA代表ipv6!"
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 }
@@ -114,6 +128,8 @@ check_ip_change() {
 		if [ "$new_ip" == "$old_ip" ]; then
 			echo "IP没有改变"
 			log "IP没有改变"
+			rm -rf ${domain_file}
+			rm -rf ${ip_file}
 			exit 0
 		fi
 	fi
@@ -128,6 +144,8 @@ get_domain_info() {
 	if [ ${code} -ne 1 ]; then
 		echo "状态码不等于1,获取域名信息失败,请检查!!!"
 		echo -e "${domain_info}"
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 }
@@ -177,6 +195,8 @@ update_dns() {
 		log -e "${res}"
 
 		rm ./res.json
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	else
 		echo "${new_ip}" >${ip_file}
@@ -201,6 +221,8 @@ main() {
 	if [ "$new_ip" == "" ]; then
 		echo "没有获取到IP地址.请检查网络..."
 		log "没有获取到IP地址.请检查网络..."
+		rm -rf ${domain_file}
+		rm -rf ${ip_file}
 		exit 1
 	fi
 	# 检查IP是否变化
