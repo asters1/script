@@ -1,7 +1,7 @@
-{
-  "login_id": "",
-  "login_token": "",
-  "domain_id": "",
-  "sub_domain": "",
-  "record_type": ""
+{ 
+ "login_id": "441544",
+  "login_token": "90682c12a36a40cb1a9b96013445c801",
+  "domain_id": "92349175",
+  "sub_domain": "@",
+  "record_type": "A"
 }

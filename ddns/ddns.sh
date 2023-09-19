@@ -115,10 +115,10 @@ get_ip() {
 }
 #获取局域网ip---192.168.1.........(这个函数只针对我自己的jdc路由器)
 get_openwrt_local_ipv4() {
-	# ifc=$(ifconfig | grep "inet addr:192.168.1")
-	# ipt=$(echo $ifc | awk -F: '{print $2}')
-	# new_ip=$(echo $ipt | awk '{print $1}')
-	new_ip="192.168.1.2"
+	ifc=$(ifconfig | grep "inet addr:192.168.1")
+	ipt=$(echo $ifc | awk -F: '{print $2}')
+	new_ip=$(echo $ipt | awk '{print $1}')
+	# new_ip="192.168.1.10"
 }
 #检查ip是否改变
 check_ip_change() {
