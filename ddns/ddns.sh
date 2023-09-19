@@ -128,8 +128,6 @@ check_ip_change() {
 		if [ "$new_ip" == "$old_ip" ]; then
 			echo "IP没有改变"
 			log "IP没有改变"
-			rm -rf ${domain_file}
-			rm -rf ${ip_file}
 			exit 0
 		fi
 	fi
